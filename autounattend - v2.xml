@@ -31,6 +31,17 @@ Notes: Generic TUCC Install
       <UILanguageFallback>en-US</UILanguageFallback>
       <UserLocale>en-US</UserLocale>
     </component>
+    <!--Added the following for virtual box guest additions-->
+    <component name="Microsoft-Windows-PnpCustomizationsWinPE" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS"
+      xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <DriverPaths>
+        <PathAndCredentials wcm:action="add" wcm:keyValue="A">
+          <Path>D:\VBoxWindowsAdditions</Path>          <!-- Modify the path as needed -->
+        </PathAndCredentials>
+      </DriverPaths>
+    </component>
+    <!--End of newly added guest additions code-->
     <component name="Microsoft-Windows-Setup" processorArchitecture="x86" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS"
       xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State"
       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
@@ -66,7 +77,7 @@ Notes: Generic TUCC Install
               <PartitionID>2</PartitionID>
             </ModifyPartition>
           </ModifyPartitions>
-          <DiskID>1</DiskID> <!--change DiskID back to 0. Changed to 1 for me bc my usb is in disk1-->
+          <DiskID>1</DiskID>
           <WillWipeDisk>true</WillWipeDisk>
         </Disk>
       </DiskConfiguration>
@@ -82,14 +93,6 @@ Notes: Generic TUCC Install
       <UserData>
         <AcceptEula>true</AcceptEula>
         <FullName>TUCCAdmin</FullName>
-        <Organization>Trinity Childcare Centers</Organization>
-        <ProductKey>
-          <Key>W269N-WFGWX-YVC9B-4J6C9-T83GX</Key>
-        </ProductKey>
-      </UserData>
-      <UserData>
-        <AcceptEula>true</AcceptEula>
-        <FullName>TUCCUser</FullName>
         <Organization>Trinity Childcare Centers</Organization>
         <ProductKey>
           <Key>W269N-WFGWX-YVC9B-4J6C9-T83GX</Key>
@@ -147,14 +150,6 @@ Notes: Generic TUCC Install
       <UserData>
         <AcceptEula>true</AcceptEula>
         <FullName>TUCCAdmin</FullName>
-        <Organization>Trinity Childcare Centers</Organization>
-        <ProductKey>
-          <Key>W269N-WFGWX-YVC9B-4J6C9-T83GX</Key>
-        </ProductKey>
-      </UserData>
-      <UserData>
-        <AcceptEula>true</AcceptEula>
-        <FullName>TUCCUser</FullName>
         <Organization>Trinity Childcare Centers</Organization>
         <ProductKey>
           <Key>W269N-WFGWX-YVC9B-4J6C9-T83GX</Key>
@@ -276,16 +271,6 @@ Notes: Generic TUCC Install
             <Group>Administrators</Group>
             <Name>TUCCAdmin</Name>
           </LocalAccount>
-          <LocalAccount wcm:action="add">
-            <Password>
-              <Value>Guest1</Value>
-              <PlainText>true</PlainText>
-            </Password>
-            <Description>Standard User Account</Description>
-            <DisplayName>TUCCUser</DisplayName>
-            <Group>Standard Users</Group>
-            <Name>TUCCUser</Name>
-          </LocalAccount>
         </LocalAccounts>
       </UserAccounts>
       <RegisteredOrganization>Trinity Childcare Centers</RegisteredOrganization>
@@ -308,12 +293,6 @@ Notes: Generic TUCC Install
           <Order>3</Order>
           <RequiresUserInput>false</RequiresUserInput>
           <CommandLine>cmd /C wmic useraccount where name="TUCCAdmin" set PasswordExpires=false</CommandLine>
-          <Description>Password Never Expires</Description>
-        </SynchronousCommand>
-        <SynchronousCommand wcm:action="add">
-          <Order>4</Order>
-          <RequiresUserInput>false</RequiresUserInput>
-          <CommandLine>cmd /C wmic useraccount where name="TUCCUser" set PasswordExpires=false</CommandLine>
           <Description>Password Never Expires</Description>
         </SynchronousCommand>
       </FirstLogonCommands>
@@ -352,16 +331,6 @@ Notes: Generic TUCC Install
             <Group>Administrators</Group>
             <Name>TUCCAdmin</Name>
           </LocalAccount>
-          <LocalAccount wcm:action="add">
-            <Password>
-              <Value>Guest1</Value>
-              <PlainText>true</PlainText>
-            </Password>
-            <Description>Standard User Account</Description>
-            <DisplayName>TUCCUser</DisplayName>
-            <Group>Standard Users</Group>
-            <Name>TUCCUser</Name>
-          </LocalAccount>
         </LocalAccounts>
       </UserAccounts>
       <RegisteredOrganization>Trinity Childcare Centers</RegisteredOrganization>
@@ -384,12 +353,6 @@ Notes: Generic TUCC Install
           <Order>3</Order>
           <RequiresUserInput>false</RequiresUserInput>
           <CommandLine>cmd /C wmic useraccount where name="TUCCAdmin" set PasswordExpires=false</CommandLine>
-          <Description>Password Never Expires</Description>
-        </SynchronousCommand>
-        <SynchronousCommand wcm:action="add">
-          <Order>4</Order>
-          <RequiresUserInput>false</RequiresUserInput>
-          <CommandLine>cmd /C wmic useraccount where name="TUCCUser" set PasswordExpires=false</CommandLine>
           <Description>Password Never Expires</Description>
         </SynchronousCommand>
       </FirstLogonCommands>
