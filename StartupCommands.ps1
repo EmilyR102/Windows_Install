@@ -1,3 +1,5 @@
+Set-ExecutionPolicy RemoteSigned #allows local scripts to run
+
 try {
   #install dell patches
   $filePath = 'C:\Users\TUCCAdmin\Downloads\Dell Lattitude E7450 Patches'

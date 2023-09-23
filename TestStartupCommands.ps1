@@ -1,3 +1,5 @@
+Set-ExecutionPolicy RemoteSigned #allows local scripts to run
+
 try {
   #run bit defender virus scan
   $consolePath = 'C:\Program Files\Bitdefender\Endpoint Security\product.console.exe'
