@@ -15,7 +15,7 @@ try {
   Start-Process -FilePath $consolePath -NoNewWindow -Wait
 
   #### create and send scan command to product console
-  $scanCommand = "FileScan.onDemand.RunScanTask custom"
+  $scanCommand = "FileScan.onDemand.RunScanTask custom scanBootSectors=true scanRegistry=true scanMemory=true smartScan=false scanRootKits=true scanPUA=true"
 
   Add-Type -AssemblyName System.Windows.Forms
   Start-Sleep -Seconds 1 # Wait for the console to fully open
