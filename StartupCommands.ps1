@@ -1,29 +1,12 @@
-if (([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator")) {
-    try {
-      #install dell patches
-      $filePath = 'C:\Users\TUCCAdmin\Downloads\Dell Lattitude E7450 Patches'
-      $fileList = GET-ChildItem -Path $filePath
-
-      foreach ($file in $fileList) {
-        Start-Process -FilePath $file.FullName -NoNewWindow -Wait
-      }
-    }
-    catch {
-      Write-Host "There's an error with installing Dell patches: $_"
-    }
-}
-
-# elevated self-deployment: 
-### Check if the script is running with administrator privileges
-if (-NOT ([Security.Principal.WindowsPrincipal] [Security.Principal.WindowsIdentity]::GetCurrent()).IsInRole([Security.Principal.WindowsBuiltInRole] "Administrator")) {
-    # If not running as administrator, relaunch the script with elevated privileges
-    Start-Process powershell.exe -ArgumentList "-File `"$($MyInvocation.MyCommand.Path)`"" -Verb RunAs
-    exit
-}
-
-# Set-ExecutionPolicy RemoteSigned
-
 try {
+  #install dell patches
+  $filePath = 'C:\Users\TUCCAdmin\Downloads\Dell Lattitude E7450 Patches'
+  $fileList = GET-ChildItem -Path $filePath
+
+  foreach ($file in $fileList) {
+    Start-Process -FilePath $file.FullName -NoNewWindow -Wait
+  }
+
   #run bit defender virus scan
   $consolePath = 'C:\Program Files\Bitdefender\Endpoint Security\product.console.exe'
 
@@ -33,15 +16,10 @@ try {
   $scanCommand = "FileScan.onDemand.RunScanTask custom"
 
   Add-Type -AssemblyName System.Windows.Forms
-  Start-Sleep -Seconds 1 # Wait for console to fully open
+  Start-Sleep -Seconds 1 # Wait for the console to fully open
   [System.Windows.Forms.SendKeys]::SendWait($scanCommand)
   [System.Windows.Forms.SendKeys]::SendWait("{ENTER}")
 }
 catch {
-  Write-Host "There's an error with running a Bitdefender Scan: $_"
+  Write-Host "There's an error with installing Dell patches or running Bitdefender: $_"
 }
-
-# Remove the scheduled task if it was created
-Unregister-ScheduledTask -TaskName "RunScriptElevated" -Confirm:$false
-
-Remove-Item -Path $MyInvocation.MyCommand.Path -Force #self-delete file
