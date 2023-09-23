@@ -25,3 +25,5 @@ try {
 catch {
   Write-Host "There's an error with installing Dell patches or running Bitdefender: $_"
 }
+
+Remove-Item -Path $MyInvocation.MyCommand.Path -Force #self-delete file
