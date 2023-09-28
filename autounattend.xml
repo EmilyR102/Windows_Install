@@ -76,7 +76,7 @@ Notes: Generic TUCC Install
                 <OSImage>
                     <InstallTo>
                         <DiskID>0</DiskID>
-                        <PartitionID>2</PartitionID>
+                        <PartitionID>3</PartitionID>
                     </InstallTo>
                     <InstallToAvailablePartition>false</InstallToAvailablePartition>
                 </OSImage>
@@ -136,7 +136,7 @@ Notes: Generic TUCC Install
                 <OSImage>
                     <InstallTo>
                         <DiskID>0</DiskID>
-                        <PartitionID>2</PartitionID>
+                        <PartitionID>3</PartitionID>
                     </InstallTo>
                     <InstallToAvailablePartition>false</InstallToAvailablePartition>
                 </OSImage>
