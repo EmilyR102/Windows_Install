@@ -134,7 +134,6 @@ Notes: Generic TUCC Install
                         <PartitionID>2</PartitionID>
                     </ModifyPartition>
                 </ModifyPartitions>
-
             </Disk>
         </DiskConfiguration>
         <ImageInstall>
