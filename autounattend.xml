@@ -35,8 +35,9 @@ Notes: Generic TUCC Install
             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
             <DiskConfiguration>
                 <Disk wcm:action="add">
+                    <DiskID>0</DiskID>
+                    <WillWipeDisk>true</WillWipeDisk>
                     <CreatePartitions>
-                        <!-- must add efi and msr to boot correctly on uefi-->
                         <CreatePartition wcm:action="add">
                             <Order>1</Order>
                             <Type>EFI</Type>
@@ -44,36 +45,32 @@ Notes: Generic TUCC Install
                         </CreatePartition>
                         <CreatePartition wcm:action="add">
                             <Order>2</Order>
+                            <Size>50</Size>
                             <Type>MSR</Type>
-                            <Size>128</Size>
                         </CreatePartition>
                         <CreatePartition wcm:action="add">
                             <Order>3</Order>
-                            <Type>Primary</Type>
                             <Extend>true</Extend>
+                            <Type>Primary</Type>
                         </CreatePartition>
                     </CreatePartitions>
                     <ModifyPartitions>
                         <ModifyPartition wcm:action="add">
-                            <Active>true</Active>
-                            <Format>NTFS</Format>
-                            <Label>System Reserved</Label>
                             <Order>1</Order>
                             <PartitionID>1</PartitionID>
-                            <TypeID>0x27</TypeID>
+                            <Label>System</Label>
+                            <Format>NTFS</Format>
                         </ModifyPartition>
                         <ModifyPartition wcm:action="add">
-                            <Active>true</Active>
-                            <Format>NTFS</Format>
+                            <Order>2</Order>
+                            <PartitionID>3</PartitionID>
                             <Label>OS</Label>
                             <Letter>C</Letter>
-                            <Order>2</Order>
-                            <PartitionID>2</PartitionID>
+                            <Format>NTFS</Format>
                         </ModifyPartition>
                     </ModifyPartitions>
-                    <DiskID>0</DiskID>
-                    <WillWipeDisk>true</WillWipeDisk>
                 </Disk>
+                <WillShowUI>OnError</WillShowUI>
             </DiskConfiguration>
             <ImageInstall>
                 <OSImage>
@@ -108,34 +105,32 @@ Notes: Generic TUCC Install
                         </CreatePartition>
                         <CreatePartition wcm:action="add">
                             <Order>2</Order>
+                            <Size>50</Size>
                             <Type>MSR</Type>
-                            <Size>128</Size>
                         </CreatePartition>
                         <CreatePartition wcm:action="add">
                             <Order>3</Order>
-                            <Type>Primary</Type>
                             <Extend>true</Extend>
+                            <Type>Primary</Type>
                         </CreatePartition>
                     </CreatePartitions>
                     <ModifyPartitions>
                         <ModifyPartition wcm:action="add">
-                            <Active>true</Active>
-                            <Format>NTFS</Format>
-                            <Label>System Reserved</Label>
                             <Order>1</Order>
                             <PartitionID>1</PartitionID>
-                            <TypeID>0x27</TypeID>
+                            <Label>System</Label>
+                            <Format>NTFS</Format>
                         </ModifyPartition>
                         <ModifyPartition wcm:action="add">
-                            <Active>true</Active>
-                            <Format>NTFS</Format>
+                            <Order>2</Order>
+                            <PartitionID>3</PartitionID>
                             <Label>OS</Label>
                             <Letter>C</Letter>
-                            <Order>2</Order>
-                            <PartitionID>2</PartitionID>
+                            <Format>NTFS</Format>
                         </ModifyPartition>
                     </ModifyPartitions>
                 </Disk>
+                <WillShowUI>OnError</WillShowUI>
             </DiskConfiguration>
             <ImageInstall>
                 <OSImage>
