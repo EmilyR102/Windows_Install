@@ -304,31 +304,31 @@ Notes: Generic TUCC Install
                     <Order>5</Order>
                     <Description>Install Google Chrome</Description>
                     <RequiresUserInput>false</RequiresUserInput>
-                    <CommandLine>cmd /c &quot;.\Files\ChromeSetup.exe&quot; /silent /install</CommandLine>
+                    <CommandLine>"%SystemDrive%\ThirdParty\ChromeSetup.exe" /silent /install</CommandLine>
                 </SynchronousCommand>
                 <SynchronousCommand wcm:action="add">
                     <Order>6</Order>
                     <Description>Install Bitdefender</Description>
                     <RequiresUserInput>false</RequiresUserInput>
-                    <CommandLine>cmd /c &quot;.\Files\BitdefenderSetup.exe&quot; /silent /install</CommandLine>
+                    <CommandLine>"%SystemDrive%\ThirdParty\BitdefenderInstall.exe" /silent /install</CommandLine>
                 </SynchronousCommand>
                 <SynchronousCommand wcm:action="add">
                     <Order>7</Order>
                     <Description>Install Microsoft Office</Description>
                     <RequiresUserInput>false</RequiresUserInput>
-                    <CommandLine>cmd.exe /c &quot;cd\msoffice &amp; setup.exe /download configuration_Office_LTSC_2021.xml &amp; setup.exe /configure configuration_Office_LTSC_2021.xml&quot;</CommandLine>
+                    <CommandLine>cmd.exe /c "%SystemDrive%\ThirdParty\MSOffice\setup.exe" /download configuration_Office_LTSC_2021.xml /configure configuration_Office_LTSC_2021.xml</CommandLine>
                 </SynchronousCommand>
                 <SynchronousCommand wcm:action="add">
                     <Order>8</Order>
                     <Description>Install Dell Patches</Description>
                     <RequiresUserInput>true</RequiresUserInput>
-                    <CommandLine>powershell.exe -ExecutionPolicy Bypass -Command &quot;$filePath = &apos;.\Files\Dell Lattitude E7450 Patches&apos;; $fileList = Get-ChildItem -Path $filePath; foreach ($file in $fileList) { Start-Process -FilePath $file.FullName -NoNewWindow -Wait }&quot;</CommandLine>
+                    <CommandLine>powershell.exe -ExecutionPolicy Bypass -Command "$filePath = '%SystemDrive%\ThirdParty\Dell Lattitude E7450 Patches'; $fileList = Get-ChildItem -Path $filePath; foreach ($file in $fileList) { Start-Process -FilePath $file.FullName -NoNewWindow -Wait }"</CommandLine>
                 </SynchronousCommand>
                 <SynchronousCommand wcm:action="add">
                     <Order>9</Order>
                     <Description>Run Bitdefender full virus scan</Description>
                     <RequiresUserInput>false</RequiresUserInput>
-                    <CommandLine>powershell.exe -ExecutionPolicy Bypass -Command &quot;$consolePath = &apos;C:\Program Files\Bitdefender\Endpoint Security\product.console.exe&apos;; Start-Process -FilePath $consolePath -NoNewWindow -Wait; $scanCommand = &apos;FileScan.onDemand.RunScanTask custom scanBootSectors=true scanRegistry=true scanMemory=true smartScan=false scanRootKits=true scanPUA=true&apos;; Start-Sleep -Seconds 1; Add-Type -AssemblyName System.Windows.Forms; [System.Windows.Forms.SendKeys]::SendWait($scanCommand); [System.Windows.Forms.SendKeys]::SendWait(&apos;{ENTER}&apos;)&quot;</CommandLine>
+                    <CommandLine>powershell.exe -ExecutionPolicy Bypass -Command "$consolePath = 'C:\Program Files\Bitdefender\Endpoint Security\product.console.exe'; Start-Process -FilePath $consolePath -NoNewWindow -Wait; $scanCommand = 'FileScan.onDemand.RunScanTask custom scanBootSectors=true scanRegistry=true scanMemory=true smartScan=false scanRootKits=true scanPUA=true'; Start-Sleep -Seconds 1; Add-Type -AssemblyName System.Windows.Forms; [System.Windows.Forms.SendKeys]::SendWait($scanCommand); [System.Windows.Forms.SendKeys]::SendWait('{ENTER}')"</CommandLine>
                 </SynchronousCommand>
             </FirstLogonCommands>
             <TimeZone>Central Standard Time</TimeZone>
@@ -409,31 +409,31 @@ Notes: Generic TUCC Install
                     <Order>5</Order>
                     <Description>Install Google Chrome</Description>
                     <RequiresUserInput>false</RequiresUserInput>
-                    <CommandLine>cmd /c &quot;.\Files\ChromeSetup.exe&quot; /silent /install</CommandLine>
+                    <CommandLine>"%SystemDrive%\ThirdParty\ChromeSetup.exe" /silent /install</CommandLine>
                 </SynchronousCommand>
                 <SynchronousCommand wcm:action="add">
                     <Order>6</Order>
                     <Description>Install Bitdefender</Description>
                     <RequiresUserInput>false</RequiresUserInput>
-                    <CommandLine>cmd /c &quot;.\Files\BitdefenderSetup.exe&quot; /silent /install</CommandLine>
+                    <CommandLine>"%SystemDrive%\ThirdParty\BitdefenderInstall.exe" /silent /install</CommandLine>
                 </SynchronousCommand>
                 <SynchronousCommand wcm:action="add">
                     <Order>7</Order>
                     <Description>Install Microsoft Office</Description>
                     <RequiresUserInput>false</RequiresUserInput>
-                    <CommandLine>cmd.exe /c &quot;cd\msoffice &amp; setup.exe /download configuration_Office_LTSC_2021.xml &amp; setup.exe /configure configuration_Office_LTSC_2021.xml&quot;</CommandLine>
+                    <CommandLine>cmd.exe /c "%SystemDrive%\ThirdParty\MSOffice\setup.exe" /download configuration_Office_LTSC_2021.xml /configure configuration_Office_LTSC_2021.xml</CommandLine>
                 </SynchronousCommand>
                 <SynchronousCommand wcm:action="add">
                     <Order>8</Order>
                     <Description>Install Dell Patches</Description>
                     <RequiresUserInput>true</RequiresUserInput>
-                    <CommandLine>powershell.exe -ExecutionPolicy Bypass -Command &quot;$filePath = &apos;.\Files\Dell Lattitude E7450 Patches&apos;; $fileList = Get-ChildItem -Path $filePath; foreach ($file in $fileList) { Start-Process -FilePath $file.FullName -NoNewWindow -Wait }&quot;</CommandLine>
+                    <CommandLine>powershell.exe -ExecutionPolicy Bypass -Command "$filePath = '%SystemDrive%\ThirdParty\Dell Lattitude E7450 Patches'; $fileList = Get-ChildItem -Path $filePath; foreach ($file in $fileList) { Start-Process -FilePath $file.FullName -NoNewWindow -Wait }"</CommandLine>
                 </SynchronousCommand>
                 <SynchronousCommand wcm:action="add">
                     <Order>9</Order>
                     <Description>Run Bitdefender full virus scan</Description>
                     <RequiresUserInput>false</RequiresUserInput>
-                    <CommandLine>powershell.exe -ExecutionPolicy Bypass -Command &quot;$consolePath = &apos;C:\Program Files\Bitdefender\Endpoint Security\product.console.exe&apos;; Start-Process -FilePath $consolePath -NoNewWindow -Wait; $scanCommand = &apos;FileScan.onDemand.RunScanTask custom scanBootSectors=true scanRegistry=true scanMemory=true smartScan=false scanRootKits=true scanPUA=true&apos;; Start-Sleep -Seconds 1; Add-Type -AssemblyName System.Windows.Forms; [System.Windows.Forms.SendKeys]::SendWait($scanCommand); [System.Windows.Forms.SendKeys]::SendWait(&apos;{ENTER}&apos;)&quot;</CommandLine>
+                    <CommandLine>powershell.exe -ExecutionPolicy Bypass -Command "$consolePath = 'C:\Program Files\Bitdefender\Endpoint Security\product.console.exe'; Start-Process -FilePath $consolePath -NoNewWindow -Wait; $scanCommand = 'FileScan.onDemand.RunScanTask custom scanBootSectors=true scanRegistry=true scanMemory=true smartScan=false scanRootKits=true scanPUA=true'; Start-Sleep -Seconds 1; Add-Type -AssemblyName System.Windows.Forms; [System.Windows.Forms.SendKeys]::SendWait($scanCommand); [System.Windows.Forms.SendKeys]::SendWait('{ENTER}')"</CommandLine>
                 </SynchronousCommand>
             </FirstLogonCommands>
             <TimeZone>Central Standard Time</TimeZone>
