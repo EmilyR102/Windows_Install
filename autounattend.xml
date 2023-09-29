@@ -45,13 +45,13 @@ Notes: Generic TUCC Install
                         </CreatePartition>
                         <CreatePartition wcm:action="add">
                             <Order>2</Order>
-                            <Size>50</Size>
                             <Type>MSR</Type>
+                            <Size>50</Size>
                         </CreatePartition>
                         <CreatePartition wcm:action="add">
                             <Order>3</Order>
-                            <Extend>true</Extend>
                             <Type>Primary</Type>
+                            <Extend>true</Extend>
                         </CreatePartition>
                     </CreatePartitions>
                     <ModifyPartitions>
@@ -65,8 +65,8 @@ Notes: Generic TUCC Install
                             <Order>2</Order>
                             <PartitionID>3</PartitionID>
                             <Label>OS</Label>
-                            <Letter>C</Letter>
                             <Format>NTFS</Format>
+                            <Letter>C</Letter>
                         </ModifyPartition>
                     </ModifyPartitions>
                 </Disk>
@@ -105,13 +105,13 @@ Notes: Generic TUCC Install
                         </CreatePartition>
                         <CreatePartition wcm:action="add">
                             <Order>2</Order>
-                            <Size>50</Size>
                             <Type>MSR</Type>
+                            <Size>50</Size>
                         </CreatePartition>
                         <CreatePartition wcm:action="add">
                             <Order>3</Order>
-                            <Extend>true</Extend>
                             <Type>Primary</Type>
+                            <Extend>true</Extend>
                         </CreatePartition>
                     </CreatePartitions>
                     <ModifyPartitions>
@@ -125,8 +125,8 @@ Notes: Generic TUCC Install
                             <Order>2</Order>
                             <PartitionID>3</PartitionID>
                             <Label>OS</Label>
-                            <Letter>C</Letter>
                             <Format>NTFS</Format>
+                            <Letter>C</Letter>
                         </ModifyPartition>
                     </ModifyPartitions>
                 </Disk>
@@ -157,8 +157,6 @@ Notes: Generic TUCC Install
             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
             <EnableLUA>false</EnableLUA>
         </component>
-    </settings>
-    <settings pass="offlineServicing">
         <component name="Microsoft-Windows-LUA-Settings" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS"
             xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State"
             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
@@ -171,8 +169,6 @@ Notes: Generic TUCC Install
             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
             <SkipRearm>1</SkipRearm>
         </component>
-    </settings>
-    <settings pass="generalize">
         <component name="Microsoft-Windows-Security-SPP" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS"
             xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State"
             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
@@ -257,12 +253,22 @@ Notes: Generic TUCC Install
                     <LocalAccount wcm:action="add">
                         <Password>
                             <Value>Admin1</Value>
-                            <PlainText>true</PlainText>
+                            <PlainText>false</PlainText>
                         </Password>
                         <Description>Admin User Account</Description>
                         <DisplayName>TUCCAdmin</DisplayName>
                         <Group>Administrators</Group>
                         <Name>TUCCAdmin</Name>
+                    </LocalAccount>
+                    <LocalAccount wcm:action="add">
+                        <Password>
+                            <Value>Guest1</Value>
+                            <PlainText>false</PlainText>
+                        </Password>
+                        <Description>Standard User Account</Description>
+                        <DisplayName>TUCCUser</DisplayName>
+                        <Group>Users</Group>
+                        <Name>TUCCUser</Name>
                     </LocalAccount>
                 </LocalAccounts>
             </UserAccounts>
@@ -271,10 +277,10 @@ Notes: Generic TUCC Install
             <DisableAutoDaylightTimeSet>false</DisableAutoDaylightTimeSet>
             <FirstLogonCommands>
                 <SynchronousCommand wcm:action="add">
-                    <Description>Control Panel View</Description>
                     <Order>1</Order>
-                    <CommandLine>reg add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\ControlPanel" /v StartupPage /t REG_DWORD /d 1 /f</CommandLine>
+                    <Description>Control Panel View</Description>
                     <RequiresUserInput>true</RequiresUserInput>
+                    <CommandLine>reg add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\ControlPanel" /v StartupPage /t REG_DWORD /d 1 /f</CommandLine>
                 </SynchronousCommand>
                 <SynchronousCommand wcm:action="add">
                     <Order>2</Order>
@@ -284,40 +290,44 @@ Notes: Generic TUCC Install
                 </SynchronousCommand>
                 <SynchronousCommand wcm:action="add">
                     <Order>3</Order>
+                    <Description>Password Never Expires</Description>
                     <RequiresUserInput>false</RequiresUserInput>
                     <CommandLine>cmd /C wmic useraccount where name="TUCCAdmin" set PasswordExpires=false</CommandLine>
-                    <Description>Password Never Expires</Description>
                 </SynchronousCommand>
                 <SynchronousCommand wcm:action="add">
                     <Order>4</Order>
                     <Description>Password Never Expires</Description>
-                    <CommandLine>cmd /C wmic useraccount where name=&quot;TUCCUser&quot; set PasswordExpires=false</CommandLine>
                     <RequiresUserInput>false</RequiresUserInput>
+                    <CommandLine>cmd /C wmic useraccount where name="TUCCUser" set PasswordExpires=false</CommandLine>
                 </SynchronousCommand>
                 <SynchronousCommand wcm:action="add">
-                    <Description>Install Google Chrome</Description>
                     <Order>5</Order>
+                    <Description>Install Google Chrome</Description>
+                    <RequiresUserInput>false</RequiresUserInput>
                     <CommandLine>cmd /c &quot;.\Files\ChromeSetup.exe&quot; /silent /install</CommandLine>
                 </SynchronousCommand>
                 <SynchronousCommand wcm:action="add">
                     <Order>6</Order>
                     <Description>Install Bitdefender</Description>
+                    <RequiresUserInput>false</RequiresUserInput>
                     <CommandLine>cmd /c &quot;.\Files\BitdefenderSetup.exe&quot; /silent /install</CommandLine>
                 </SynchronousCommand>
                 <SynchronousCommand wcm:action="add">
-                    <Description>Install Microsoft Office</Description>
                     <Order>7</Order>
+                    <Description>Install Microsoft Office</Description>
+                    <RequiresUserInput>false</RequiresUserInput>
                     <CommandLine>cmd.exe /c &quot;cd\msoffice &amp; setup.exe /download configuration_Office_LTSC_2021.xml &amp; setup.exe /configure configuration_Office_LTSC_2021.xml&quot;</CommandLine>
                 </SynchronousCommand>
                 <SynchronousCommand wcm:action="add">
-                    <Description>Install Dell Patches</Description>
-                    <CommandLine>powershell.exe -ExecutionPolicy Bypass -Command &quot;$filePath = &apos;.\Files\Dell Lattitude E7450 Patches&apos;; $fileList = Get-ChildItem -Path $filePath; foreach ($file in $fileList) { Start-Process -FilePath $file.FullName -NoNewWindow -Wait }&quot;</CommandLine>
                     <Order>8</Order>
+                    <Description>Install Dell Patches</Description>
+                    <RequiresUserInput>true</RequiresUserInput>
+                    <CommandLine>powershell.exe -ExecutionPolicy Bypass -Command &quot;$filePath = &apos;.\Files\Dell Lattitude E7450 Patches&apos;; $fileList = Get-ChildItem -Path $filePath; foreach ($file in $fileList) { Start-Process -FilePath $file.FullName -NoNewWindow -Wait }&quot;</CommandLine>
                 </SynchronousCommand>
                 <SynchronousCommand wcm:action="add">
+                    <Order>9</Order>
                     <Description>Run Bitdefender full virus scan</Description>
                     <RequiresUserInput>false</RequiresUserInput>
-                    <Order>9</Order>
                     <CommandLine>powershell.exe -ExecutionPolicy Bypass -Command &quot;$consolePath = &apos;C:\Program Files\Bitdefender\Endpoint Security\product.console.exe&apos;; Start-Process -FilePath $consolePath -NoNewWindow -Wait; $scanCommand = &apos;FileScan.onDemand.RunScanTask custom scanBootSectors=true scanRegistry=true scanMemory=true smartScan=false scanRootKits=true scanPUA=true&apos;; Start-Sleep -Seconds 1; Add-Type -AssemblyName System.Windows.Forms; [System.Windows.Forms.SendKeys]::SendWait($scanCommand); [System.Windows.Forms.SendKeys]::SendWait(&apos;{ENTER}&apos;)&quot;</CommandLine>
                 </SynchronousCommand>
             </FirstLogonCommands>
@@ -346,21 +356,21 @@ Notes: Generic TUCC Install
             <UserAccounts>
                 <LocalAccounts>
                     <LocalAccount wcm:action="add">
+                        <Description>Admin User Account</Description>
                         <Password>
                             <Value>Admin1</Value>
                             <PlainText>false</PlainText>
                         </Password>
-                        <Description>Admin User Account</Description>
                         <DisplayName>TUCCAdmin</DisplayName>
                         <Group>Administrators</Group>
                         <Name>TUCCAdmin</Name>
                     </LocalAccount>
                     <LocalAccount wcm:action="add">
+                        <Description>Standard User Account</Description>
                         <Password>
                             <Value>Guest1</Value>
                             <PlainText>false</PlainText>
                         </Password>
-                        <Description>Standard User Account</Description>
                         <DisplayName>TUCCUser</DisplayName>
                         <Group>Users</Group>
                         <Name>TUCCUser</Name>
@@ -372,10 +382,10 @@ Notes: Generic TUCC Install
             <DisableAutoDaylightTimeSet>false</DisableAutoDaylightTimeSet>
             <FirstLogonCommands>
                 <SynchronousCommand wcm:action="add">
-                    <Description>Control Panel View</Description>
                     <Order>1</Order>
-                    <CommandLine>reg add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\ControlPanel" /v StartupPage /t REG_DWORD /d 1 /f</CommandLine>
+                    <Description>Control Panel View</Description>
                     <RequiresUserInput>true</RequiresUserInput>
+                    <CommandLine>reg add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Explorer\ControlPanel" /v StartupPage /t REG_DWORD /d 1 /f</CommandLine>
                 </SynchronousCommand>
                 <SynchronousCommand wcm:action="add">
                     <Order>2</Order>
@@ -385,40 +395,44 @@ Notes: Generic TUCC Install
                 </SynchronousCommand>
                 <SynchronousCommand wcm:action="add">
                     <Order>3</Order>
+                    <Description>Password Never Expires</Description>
                     <RequiresUserInput>false</RequiresUserInput>
                     <CommandLine>cmd /C wmic useraccount where name="TUCCAdmin" set PasswordExpires=false</CommandLine>
-                    <Description>Password Never Expires</Description>
                 </SynchronousCommand>
                 <SynchronousCommand wcm:action="add">
                     <Order>4</Order>
                     <Description>Password Never Expires</Description>
-                    <CommandLine>cmd /C wmic useraccount where name=&quot;TUCCUser&quot; set PasswordExpires=false</CommandLine>
                     <RequiresUserInput>false</RequiresUserInput>
+                    <CommandLine>cmd /C wmic useraccount where name="TUCCUser" set PasswordExpires=false</CommandLine>
                 </SynchronousCommand>
                 <SynchronousCommand wcm:action="add">
-                    <Description>Install Google Chrome</Description>
                     <Order>5</Order>
+                    <Description>Install Google Chrome</Description>
+                    <RequiresUserInput>false</RequiresUserInput>
                     <CommandLine>cmd /c &quot;.\Files\ChromeSetup.exe&quot; /silent /install</CommandLine>
                 </SynchronousCommand>
                 <SynchronousCommand wcm:action="add">
                     <Order>6</Order>
                     <Description>Install Bitdefender</Description>
+                    <RequiresUserInput>false</RequiresUserInput>
                     <CommandLine>cmd /c &quot;.\Files\BitdefenderSetup.exe&quot; /silent /install</CommandLine>
                 </SynchronousCommand>
                 <SynchronousCommand wcm:action="add">
-                    <Description>Install Microsoft Office</Description>
                     <Order>7</Order>
+                    <Description>Install Microsoft Office</Description>
+                    <RequiresUserInput>false</RequiresUserInput>
                     <CommandLine>cmd.exe /c &quot;cd\msoffice &amp; setup.exe /download configuration_Office_LTSC_2021.xml &amp; setup.exe /configure configuration_Office_LTSC_2021.xml&quot;</CommandLine>
                 </SynchronousCommand>
                 <SynchronousCommand wcm:action="add">
-                    <Description>Install Dell Patches</Description>
-                    <CommandLine>powershell.exe -ExecutionPolicy Bypass -Command &quot;$filePath = &apos;.\Files\Dell Lattitude E7450 Patches&apos;; $fileList = Get-ChildItem -Path $filePath; foreach ($file in $fileList) { Start-Process -FilePath $file.FullName -NoNewWindow -Wait }&quot;</CommandLine>
                     <Order>8</Order>
+                    <Description>Install Dell Patches</Description>
+                    <RequiresUserInput>true</RequiresUserInput>
+                    <CommandLine>powershell.exe -ExecutionPolicy Bypass -Command &quot;$filePath = &apos;.\Files\Dell Lattitude E7450 Patches&apos;; $fileList = Get-ChildItem -Path $filePath; foreach ($file in $fileList) { Start-Process -FilePath $file.FullName -NoNewWindow -Wait }&quot;</CommandLine>
                 </SynchronousCommand>
                 <SynchronousCommand wcm:action="add">
+                    <Order>9</Order>
                     <Description>Run Bitdefender full virus scan</Description>
                     <RequiresUserInput>false</RequiresUserInput>
-                    <Order>9</Order>
                     <CommandLine>powershell.exe -ExecutionPolicy Bypass -Command &quot;$consolePath = &apos;C:\Program Files\Bitdefender\Endpoint Security\product.console.exe&apos;; Start-Process -FilePath $consolePath -NoNewWindow -Wait; $scanCommand = &apos;FileScan.onDemand.RunScanTask custom scanBootSectors=true scanRegistry=true scanMemory=true smartScan=false scanRootKits=true scanPUA=true&apos;; Start-Sleep -Seconds 1; Add-Type -AssemblyName System.Windows.Forms; [System.Windows.Forms.SendKeys]::SendWait($scanCommand); [System.Windows.Forms.SendKeys]::SendWait(&apos;{ENTER}&apos;)&quot;</CommandLine>
                 </SynchronousCommand>
             </FirstLogonCommands>
