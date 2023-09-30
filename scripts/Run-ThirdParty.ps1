@@ -43,8 +43,15 @@ try {
     $filePath = "$thirdPartyDir\Dell Lattitude E7450 Patches"
     $fileList = Get-ChildItem -Path $filePath
 
+    $count = 1
+    #total = 12
+
     foreach ($file in $fileList) {
+        echo ""
+        echo "($count/12) Installing $file.FullName"
+        echo ""
         Start-Process -FilePath $file.FullName -NoNewWindow -Wait
+        $count++
     }
 
     echo ""

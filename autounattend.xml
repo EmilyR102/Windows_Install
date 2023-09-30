@@ -176,24 +176,6 @@ Notes: Generic TUCC Install
         </component>
     </settings>
     <settings pass="specialize">
-        <component name="Microsoft-Windows-International-Core" processorArchitecture="x86" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS"
-            xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State"
-            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-            <InputLocale>0409:00000409</InputLocale>
-            <SystemLocale>en-US</SystemLocale>
-            <UILanguage>en-US</UILanguage>
-            <UILanguageFallback>en-US</UILanguageFallback>
-            <UserLocale>en-US</UserLocale>
-        </component>
-        <component name="Microsoft-Windows-International-Core" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS"
-            xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State"
-            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-            <InputLocale>0409:00000409</InputLocale>
-            <SystemLocale>en-US</SystemLocale>
-            <UILanguage>en-US</UILanguage>
-            <UILanguageFallback>en-US</UILanguageFallback>
-            <UserLocale>en-US</UserLocale>
-        </component>
         <component name="Microsoft-Windows-Security-SPP-UX" processorArchitecture="x86" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS"
             xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State"
             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
@@ -321,31 +303,37 @@ Notes: Generic TUCC Install
                     <Order>5</Order>
                     <Description>Install Google Chrome</Description>
                     <RequiresUserInput>false</RequiresUserInput>
-                    <CommandLine>"%SystemDrive%\ThirdParty\ChromeSetup.exe" /silent /install</CommandLine>
+                    <CommandLine>echo "Installing Chrome"; %SystemDrive%\ThirdParty\ChromeSetup.exe" /silent /install</CommandLine>
                 </SynchronousCommand>
                 <SynchronousCommand wcm:action="add">
                     <Order>6</Order>
                     <Description>Install Bitdefender</Description>
                     <RequiresUserInput>false</RequiresUserInput>
-                    <CommandLine>"%SystemDrive%\ThirdParty\BitdefenderInstall.exe" /silent /install</CommandLine>
+                    <CommandLine>echo "Installing Bitdefender"; %SystemDrive%\ThirdParty\BitdefenderInstall.exe" /silent /install</CommandLine>
                 </SynchronousCommand>
                 <SynchronousCommand wcm:action="add">
                     <Order>7</Order>
                     <Description>Install Microsoft Office</Description>
                     <RequiresUserInput>false</RequiresUserInput>
-                    <CommandLine>cmd.exe /c "%SystemDrive%\ThirdParty\MSOffice\setup.exe" /download configuration_Office_LTSC_2021.xml /configure configuration_Office_LTSC_2021.xml</CommandLine>
+                    <CommandLine>echo "Installing Microsoft Office"; cmd.exe /c "%SystemDrive%\ThirdParty\MSOffice\setup.exe" /download configuration_Office_LTSC_2021.xml /configure configuration_Office_LTSC_2021.xml</CommandLine>
                 </SynchronousCommand>
                 <SynchronousCommand wcm:action="add">
                     <Order>8</Order>
                     <Description>Install Dell Patches</Description>
-                    <RequiresUserInput>true</RequiresUserInput>
-                    <CommandLine>powershell.exe -ExecutionPolicy Bypass -Command "$filePath = '%SystemDrive%\ThirdParty\Dell Lattitude E7450 Patches'; $fileList = Get-ChildItem -Path $filePath; foreach ($file in $fileList) { Start-Process -FilePath $file.FullName -NoNewWindow -Wait }"</CommandLine>
+                    <RequiresUserInput>false</RequiresUserInput>
+                    <CommandLine>echo "Installing Dell Patches" ; powershell.exe -ExecutionPolicy Bypass -Command 
+                    "$filePath = '%SystemDrive%\ThirdParty\Dell Lattitude E7450 Patches'; 
+                    $fileList = Get-ChildItem -Path $filePath; $count = 1; 
+                    foreach ($file in $fileList){
+                         Write-Host "(`$count/total) Installing `$($file.Name)"; 
+                         Start-Process -FilePath $file.FullName -ArgumentList '/install', '/silent' -NoNewWindow -Wait ; $count++}"
+                    </CommandLine>
                 </SynchronousCommand>
                 <SynchronousCommand wcm:action="add">
                     <Order>9</Order>
                     <Description>Run Bitdefender full virus scan</Description>
                     <RequiresUserInput>false</RequiresUserInput>
-                    <CommandLine>powershell.exe -ExecutionPolicy Bypass -Command "$consolePath = 'C:\Program Files\Bitdefender\Endpoint Security\product.console.exe'; Start-Process -FilePath $consolePath -NoNewWindow -Wait; $scanCommand = 'FileScan.onDemand.RunScanTask custom scanBootSectors=true scanRegistry=true scanMemory=true smartScan=false scanRootKits=true scanPUA=true'; Start-Sleep -Seconds 1; Add-Type -AssemblyName System.Windows.Forms; [System.Windows.Forms.SendKeys]::SendWait($scanCommand); [System.Windows.Forms.SendKeys]::SendWait('{ENTER}')"</CommandLine>
+                    <CommandLine>echo "Run Full Virus Scan" ; powershell.exe -ExecutionPolicy Bypass -Command "$consolePath = 'C:\Program Files\Bitdefender\Endpoint Security\product.console.exe'; Start-Process -FilePath $consolePath -NoNewWindow -Wait; $scanCommand = 'FileScan.onDemand.RunScanTask custom scanBootSectors=true scanRegistry=true scanMemory=true smartScan=false scanRootKits=true scanPUA=true'; Start-Sleep -Seconds 1; Add-Type -AssemblyName System.Windows.Forms; [System.Windows.Forms.SendKeys]::SendWait($scanCommand); [System.Windows.Forms.SendKeys]::SendWait('{ENTER}')"</CommandLine>
                 </SynchronousCommand>
             </FirstLogonCommands>
             <TimeZone>Central Standard Time</TimeZone>
