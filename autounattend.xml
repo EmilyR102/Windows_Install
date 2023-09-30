@@ -316,6 +316,7 @@ Notes: Generic TUCC Install
                     <RequiresUserInput>false</RequiresUserInput>
                     <CommandLine>cmd /C wmic useraccount where name="TUCCUser" set PasswordExpires=false</CommandLine>
                 </SynchronousCommand>
+                <!--Connect to ethernet for the following commands-->
                 <SynchronousCommand wcm:action="add">
                     <Order>5</Order>
                     <Description>Install Google Chrome</Description>
