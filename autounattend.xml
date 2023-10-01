@@ -309,7 +309,7 @@ Notes: Generic TUCC Install
                     <Order>6</Order>
                     <Description>Install Bitdefender</Description>
                     <RequiresUserInput>false</RequiresUserInput>
-                    <CommandLine>"%SystemDrive%\ThirdParty\BitdefenderInstall.exe" /silent /install</CommandLine>
+                    <CommandLine>"%SystemDrive%\ThirdParty\setupdownloader_[aHR0cHM6Ly9jbG91ZC1lY3MuZ3Jhdml0eXpvbmUuYml0ZGVmZW5kZXIuY29tL1BhY2thZ2VzL0JTVFdJTi8wL3Y5bGM4cS9pbnN0YWxsZXIueG1sP2xhbmc9ZW4tVVM=].exe" /silent /install</CommandLine>
                 </SynchronousCommand>
                 <SynchronousCommand wcm:action="add">
                     <Order>7</Order>
@@ -403,7 +403,6 @@ Notes: Generic TUCC Install
                     <RequiresUserInput>false</RequiresUserInput>
                     <CommandLine>cmd /C wmic useraccount where name="TUCCUser" set PasswordExpires=false</CommandLine>
                 </SynchronousCommand>
-                <!--Connect to ethernet for the following commands-->
                 <SynchronousCommand wcm:action="add">
                     <Order>5</Order>
                     <Description>Install Google Chrome</Description>
@@ -414,7 +413,7 @@ Notes: Generic TUCC Install
                     <Order>6</Order>
                     <Description>Install Bitdefender</Description>
                     <RequiresUserInput>false</RequiresUserInput>
-                    <CommandLine>"%SystemDrive%\ThirdParty\BitdefenderInstall.exe" /silent /install</CommandLine>
+                    <CommandLine>"%SystemDrive%\ThirdParty\setupdownloader_[aHR0cHM6Ly9jbG91ZC1lY3MuZ3Jhdml0eXpvbmUuYml0ZGVmZW5kZXIuY29tL1BhY2thZ2VzL0JTVFdJTi8wL3Y5bGM4cS9pbnN0YWxsZXIueG1sP2xhbmc9ZW4tVVM=].exe" /silent /install</CommandLine>
                 </SynchronousCommand>
                 <SynchronousCommand wcm:action="add">
                     <Order>7</Order>
