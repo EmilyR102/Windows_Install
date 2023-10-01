@@ -298,7 +298,6 @@ Notes: Generic TUCC Install
                     <RequiresUserInput>false</RequiresUserInput>
                     <CommandLine>cmd /C wmic useraccount where name="TUCCUser" set PasswordExpires=false</CommandLine>
                 </SynchronousCommand>
-                <!--Connect to ethernet for the following commands-->
                 <SynchronousCommand wcm:action="add">
                     <Order>5</Order>
                     <Description>Install Google Chrome</Description>
@@ -315,13 +314,15 @@ Notes: Generic TUCC Install
                     <Order>7</Order>
                     <Description>Install Microsoft Office</Description>
                     <RequiresUserInput>false</RequiresUserInput>
-                    <CommandLine>cmd.exe /c "%SystemDrive%\ThirdParty\MSOffice\setup.exe" /download configuration_Office_LTSC_2021.xml /configure configuration_Office_LTSC_2021.xml</CommandLine>
+                    <CommandLine>"%SystemDrive%\ThirdParty\MSOffice\setup.exe" /download configuration_Office_LTSC_2021.xml /configure configuration_Office_LTSC_2021.xml
+                    </CommandLine>
                 </SynchronousCommand>
                 <SynchronousCommand wcm:action="add">
                     <Order>8</Order>
                     <Description>Install Dell Patches</Description>
-                    <RequiresUserInput>true</RequiresUserInput>
-                    <CommandLine>powershell.exe -ExecutionPolicy Bypass -Command "$filePath = '%SystemDrive%\ThirdParty\Dell Lattitude E7450 Patches'; $fileList = Get-ChildItem -Path $filePath; foreach ($file in $fileList) { Start-Process -FilePath $file.FullName -NoNewWindow -Wait }"</CommandLine>
+                    <RequiresUserInput>false</RequiresUserInput>
+                    <CommandLine>for /d %%D in ("%SystemDrive%\ThirdParty\Dell_Patches\*") do (for %%F in ("%%D\*") do (%%F /silent /install))
+                    </CommandLine>
                 </SynchronousCommand>
                 <SynchronousCommand wcm:action="add">
                     <Order>9</Order>
@@ -419,13 +420,15 @@ Notes: Generic TUCC Install
                     <Order>7</Order>
                     <Description>Install Microsoft Office</Description>
                     <RequiresUserInput>false</RequiresUserInput>
-                    <CommandLine>cmd.exe /c "%SystemDrive%\ThirdParty\MSOffice\setup.exe" /download configuration_Office_LTSC_2021.xml /configure configuration_Office_LTSC_2021.xml</CommandLine>
+                    <CommandLine>"%SystemDrive%\ThirdParty\MSOffice\setup.exe" /download configuration_Office_LTSC_2021.xml /configure configuration_Office_LTSC_2021.xml
+                    </CommandLine>
                 </SynchronousCommand>
                 <SynchronousCommand wcm:action="add">
                     <Order>8</Order>
                     <Description>Install Dell Patches</Description>
-                    <RequiresUserInput>true</RequiresUserInput>
-                    <CommandLine>powershell.exe -ExecutionPolicy Bypass -Command "$filePath = '%SystemDrive%\ThirdParty\Dell Lattitude E7450 Patches'; $fileList = Get-ChildItem -Path $filePath; foreach ($file in $fileList) { Start-Process -FilePath $file.FullName -NoNewWindow -Wait }"</CommandLine>
+                    <RequiresUserInput>false</RequiresUserInput>
+                    <CommandLine>for /d %%D in ("%SystemDrive%\ThirdParty\Dell_Patches\*") do (for %%F in ("%%D\*") do (%%F /silent /install))
+                    </CommandLine>
                 </SynchronousCommand>
                 <SynchronousCommand wcm:action="add">
                     <Order>9</Order>
