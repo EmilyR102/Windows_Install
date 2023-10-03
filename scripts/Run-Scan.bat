@@ -1,7 +1,7 @@
 @echo off
 setlocal enabledelayedexpansion
 
-set "targetProcess=Endpoint Security Installer"
+set "targetProcess=Installer.exe"
 
 ::wait_for_target
 tasklist /fi "imagename eq %targetProcess%" | find /i "%targetProcess%" > nul
