@@ -298,7 +298,6 @@ Notes: Generic TUCC Install
                     <RequiresUserInput>false</RequiresUserInput>
                     <CommandLine>cmd /C wmic useraccount where name="TUCCUser" set PasswordExpires=false</CommandLine>
                 </SynchronousCommand>
-                <!--Connect to ethernet for the following commands-->
                 <SynchronousCommand wcm:action="add">
                     <Order>5</Order>
                     <Description>Install Google Chrome</Description>
@@ -311,7 +310,6 @@ Notes: Generic TUCC Install
                     <RequiresUserInput>false</RequiresUserInput>
                     <CommandLine>"%SystemDrive%\ThirdParty\setupdownloader_[aHR0cHM6Ly9jbG91ZC1lY3MuZ3Jhdml0eXpvbmUuYml0ZGVmZW5kZXIuY29tL1BhY2thZ2VzL0JTVFdJTi8wL3Y5bGM4cS9pbnN0YWxsZXIueG1sP2xhbmc9ZW4tVVM=].exe" /silent /install</CommandLine>
                 </SynchronousCommand>
-                <!--Takes a while to start Microsoft commands-->
                 <SynchronousCommand wcm:action="add">
                     <Order>7</Order>
                     <Description>Download Microsoft Office</Description>
@@ -326,13 +324,7 @@ Notes: Generic TUCC Install
                 </SynchronousCommand>
                 <SynchronousCommand wcm:action="add">
                     <Order>9</Order>
-                    <Description>Install Dell Patches</Description>
-                    <RequiresUserInput>true</RequiresUserInput>
-                    <CommandLine>"C:\ThirdParty\Run-Dell.bat"</CommandLine>
-                </SynchronousCommand>
-                <SynchronousCommand wcm:action="add">
-                    <Order>10</Order>
-                    <Description>Run Bitdefender full virus scan</Description>
+                    <Description>Install Bitdefender then run a full virus scan</Description>
                     <RequiresUserInput>false</RequiresUserInput>
                     <CommandLine>"C:\ThirdParty\Run-Scan.bat"</CommandLine>
                 </SynchronousCommand>
@@ -440,7 +432,6 @@ Notes: Generic TUCC Install
                     <RequiresUserInput>false</RequiresUserInput>
                     <CommandLine>"C:\ThirdParty\Run-Scan.bat"</CommandLine>
                 </SynchronousCommand>
-                <!--Don't accidentally restart computer for Dell processes during virus scan or other processes-->
             </FirstLogonCommands>
             <TimeZone>Central Standard Time</TimeZone>
         </component>
