@@ -11,6 +11,10 @@ The Run-Dell.bat runs automatically after each reboot. There may be issues with 
 WINDOWS IMAGE:
 I used a Windows.iso that's 32-bit and 64-bit. I got the 64 bit Windows install to work perfectly, but the 32-bit version during the boot stage said it's missing a windows.eog file.
 
+IMPORTANT USB DETAILS:
+Must have a GPT Partition Scheme and NTFS File System
+I used Rufus to make my USB
+
 IMPORTANT FILES TO TRANSFER INTO A NEW BOOTABLE USB:
 Everything in the folders x64 and x86:
 install.wim and the clg file should go in the corresponding sources folders in the bootable usb.

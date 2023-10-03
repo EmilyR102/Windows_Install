@@ -19,6 +19,7 @@ if %errorlevel% equ 0 (
     ping 127.0.0.1 -n 3 > nul
     del "%~f0"
     echo Batch file deleted.
+    goto :end
 )
 
 :end
