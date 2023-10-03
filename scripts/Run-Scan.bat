@@ -3,10 +3,10 @@ setlocal enabledelayedexpansion
 
 set "targetProcess=Installer.exe"
 
-::wait_for_target
+:wait_for_target
 tasklist /fi "imagename eq %targetProcess%" | find /i "%targetProcess%" > nul
 if %errorlevel% equ 0 (
-    echo Target application is still running. Waiting...
+    echo Bitdefender Endpoint Security Installer is still running. Waiting...
     timeout /t 60 /nobreak > nul
     goto :wait_for_target
 ) else (
@@ -20,5 +20,5 @@ if %errorlevel% equ 0 (
     echo Batch file deleted.
 )
 
-::end
+:end
 endlocal
