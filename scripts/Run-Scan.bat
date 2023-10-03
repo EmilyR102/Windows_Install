@@ -1,7 +1,24 @@
-"C:\Program Files\Bitdefender\Endpoint Security\product.console.exe" /c FileScan.OnDemand.RunScanTask custom scanBootSectors=true scanRegistry=true scanMemory=true smartScan=false scanRootKits=true scanPUA=true
-
 @echo off
-echo Deleting this batch file...
-ping 127.0.0.1 -n 3 > nul
-del "%~f0"
-echo Batch file deleted.
+setlocal enabledelayedexpansion
+
+set "targetProcess=C:\Users\TUCCAdmin\AppData\Local\Temp\bdtempdir01\x64\Installer.exe"
+
+::wait_for_target
+tasklist /fi "imagename eq %targetProcess%" | find /i "%targetProcess%" > nul
+if %errorlevel% equ 0 (
+    echo Target application is still running. Waiting...
+    timeout /t 60 /nobreak > nul
+    goto :wait_for_target
+) else (
+    echo Target application has finished running. Running post-run commands...
+
+    "C:\Program Files\Bitdefender\Endpoint Security\product.console.exe" /c FileScan.OnDemand.RunScanTask custom scanBootSectors=true scanRegistry=true scanMemory=true smartScan=false scanRootKits=true scanPUA=true
+
+    echo Deleting this batch file...
+    ping 127.0.0.1 -n 3 > nul
+    del "%~f0"
+    echo Batch file deleted.
+)
+
+::end
+endlocal
