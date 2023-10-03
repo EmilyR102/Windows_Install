@@ -299,48 +299,42 @@ Notes: Generic TUCC Install
                     <CommandLine>cmd /C wmic useraccount where name="TUCCUser" set PasswordExpires=false</CommandLine>
                 </SynchronousCommand>
                 <!--Connect to ethernet for the following commands-->
-                <!-- <SynchronousCommand wcm:action="add">
+                <SynchronousCommand wcm:action="add">
                     <Order>5</Order>
                     <Description>Install Google Chrome</Description>
                     <RequiresUserInput>false</RequiresUserInput>
                     <CommandLine>"%SystemDrive%\ThirdParty\ChromeSetup.exe" /silent /install</CommandLine>
-                </SynchronousCommand> -->
+                </SynchronousCommand>
                 <SynchronousCommand wcm:action="add">
-                    <Order>5</Order>
+                    <Order>6</Order>
                     <Description>Install Bitdefender</Description>
                     <RequiresUserInput>false</RequiresUserInput>
                     <CommandLine>"%SystemDrive%\ThirdParty\setupdownloader_[aHR0cHM6Ly9jbG91ZC1lY3MuZ3Jhdml0eXpvbmUuYml0ZGVmZW5kZXIuY29tL1BhY2thZ2VzL0JTVFdJTi8wL3Y5bGM4cS9pbnN0YWxsZXIueG1sP2xhbmc9ZW4tVVM=].exe" /silent /install</CommandLine>
                 </SynchronousCommand>
                 <!--Takes a while to start Microsoft commands-->
-                <!-- <SynchronousCommand wcm:action="add">
-                    <Order>5</Order>
+                <SynchronousCommand wcm:action="add">
+                    <Order>7</Order>
                     <Description>Download Microsoft Office</Description>
                     <RequiresUserInput>false</RequiresUserInput>
                     <CommandLine>"C:\ThirdParty\MSOffice\setup.exe" /download "C:\ThirdParty\MSOffice\configuration_Office_LTSC_2021.xml"</CommandLine>
                 </SynchronousCommand>
                 <SynchronousCommand wcm:action="add">
-                    <Order>6</Order>
+                    <Order>8</Order>
                     <Description>Configure Microsoft Office</Description>
                     <RequiresUserInput>false</RequiresUserInput>
                     <CommandLine>"C:\ThirdParty\MSOffice\setup.exe" /configure "C:\ThirdParty\MSOffice\configuration_Office_LTSC_2021.xml"</CommandLine>
-                </SynchronousCommand> -->
-                <!-- <SynchronousCommand wcm:action="add">
-                    <Order>5</Order>
+                </SynchronousCommand>
+                <SynchronousCommand wcm:action="add">
+                    <Order>9</Order>
                     <Description>Install Dell Patches</Description>
                     <RequiresUserInput>true</RequiresUserInput>
                     <CommandLine>"C:\ThirdParty\Run-Dell.bat"</CommandLine>
-                </SynchronousCommand> -->
-                <!-- <SynchronousCommand wcm:action="add">
-                    <Order>8</Order>
+                </SynchronousCommand>
+                <SynchronousCommand wcm:action="add">
+                    <Order>10</Order>
                     <Description>Run Bitdefender full virus scan</Description>
                     <RequiresUserInput>false</RequiresUserInput>
                     <CommandLine>"C:\ThirdParty\Run-Scan.bat"</CommandLine>
-                </SynchronousCommand> -->
-                <SynchronousCommand wcm:action="add">
-                    <Order>6</Order>
-                    <Description>Run Bitdefender full virus scan</Description>
-                    <RequiresUserInput>false</RequiresUserInput>
-                    <CommandLine>"C:\Program Files\Bitdefender\Endpoint Security\product.console.exe" /c FileScan.OnDemand.RunScanTask custom scanBootSectors=true scanRegistry=true scanMemory=true smartScan=false scanRootKits=true scanPUA=true</CommandLine>
                 </SynchronousCommand>
             </FirstLogonCommands>
             <TimeZone>Central Standard Time</TimeZone>
@@ -416,49 +410,41 @@ Notes: Generic TUCC Install
                     <RequiresUserInput>false</RequiresUserInput>
                     <CommandLine>cmd /C wmic useraccount where name="TUCCUser" set PasswordExpires=false</CommandLine>
                 </SynchronousCommand>
-                <!--Connect to ethernet for the following commands-->
-                <!-- <SynchronousCommand wcm:action="add">
+                <SynchronousCommand wcm:action="add">
                     <Order>5</Order>
                     <Description>Install Google Chrome</Description>
                     <RequiresUserInput>false</RequiresUserInput>
                     <CommandLine>"%SystemDrive%\ThirdParty\ChromeSetup.exe" /silent /install</CommandLine>
-                </SynchronousCommand> -->
+                </SynchronousCommand>
                 <SynchronousCommand wcm:action="add">
-                    <Order>5</Order>
+                    <Order>6</Order>
                     <Description>Install Bitdefender</Description>
                     <RequiresUserInput>false</RequiresUserInput>
                     <CommandLine>"%SystemDrive%\ThirdParty\setupdownloader_[aHR0cHM6Ly9jbG91ZC1lY3MuZ3Jhdml0eXpvbmUuYml0ZGVmZW5kZXIuY29tL1BhY2thZ2VzL0JTVFdJTi8wL3Y5bGM4cS9pbnN0YWxsZXIueG1sP2xhbmc9ZW4tVVM=].exe" /silent /install</CommandLine>
                 </SynchronousCommand>
-                <!--Takes a while to start Microsoft commands-->
-                <!-- <SynchronousCommand wcm:action="add">
-                    <Order>5</Order>
+                <SynchronousCommand wcm:action="add">
+                    <Order>7</Order>
                     <Description>Download Microsoft Office</Description>
                     <RequiresUserInput>false</RequiresUserInput>
                     <CommandLine>"C:\ThirdParty\MSOffice\setup.exe" /download "C:\ThirdParty\MSOffice\configuration_Office_LTSC_2021.xml"</CommandLine>
                 </SynchronousCommand>
                 <SynchronousCommand wcm:action="add">
-                    <Order>6</Order>
+                    <Order>8</Order>
                     <Description>Configure Microsoft Office</Description>
                     <RequiresUserInput>false</RequiresUserInput>
                     <CommandLine>"C:\ThirdParty\MSOffice\setup.exe" /configure "C:\ThirdParty\MSOffice\configuration_Office_LTSC_2021.xml"</CommandLine>
-                </SynchronousCommand> -->
-                <!-- <SynchronousCommand wcm:action="add">
-                    <Order>5</Order>
+                </SynchronousCommand>
+                <SynchronousCommand wcm:action="add">
+                    <Order>9</Order>
                     <Description>Install Dell Patches</Description>
                     <RequiresUserInput>true</RequiresUserInput>
                     <CommandLine>"C:\ThirdParty\Run-Dell.bat"</CommandLine>
-                </SynchronousCommand> -->
-                <!-- <SynchronousCommand wcm:action="add">
-                    <Order>8</Order>
+                </SynchronousCommand>
+                <SynchronousCommand wcm:action="add">
+                    <Order>10</Order>
                     <Description>Run Bitdefender full virus scan</Description>
                     <RequiresUserInput>false</RequiresUserInput>
                     <CommandLine>"C:\ThirdParty\Run-Scan.bat"</CommandLine>
-                </SynchronousCommand> -->
-                <SynchronousCommand wcm:action="add">
-                    <Order>6</Order>
-                    <Description>Run Bitdefender full virus scan</Description>
-                    <RequiresUserInput>false</RequiresUserInput>
-                    <CommandLine>"C:\Program Files\Bitdefender\Endpoint Security\product.console.exe" /c FileScan.OnDemand.RunScanTask custom scanBootSectors=true scanRegistry=true scanMemory=true smartScan=false scanRootKits=true scanPUA=true</CommandLine>
                 </SynchronousCommand>
             </FirstLogonCommands>
             <TimeZone>Central Standard Time</TimeZone>
