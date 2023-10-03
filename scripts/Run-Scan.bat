@@ -1,7 +1,7 @@
 @echo off
 setlocal enabledelayedexpansion
 
-set "targetProcess=C:\Users\TUCCAdmin\AppData\Local\Temp\bdtempdir01\x64\Installer.exe"
+set "targetProcess=Endpoint Security Installer"
 
 ::wait_for_target
 tasklist /fi "imagename eq %targetProcess%" | find /i "%targetProcess%" > nul
